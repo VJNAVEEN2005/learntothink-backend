@@ -1,3 +1,4 @@
+const serverless = require('serverless-http')
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
@@ -48,3 +49,5 @@ app.get("/api/topic/:category/:topic", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+module.exports.handler = serverless(app)

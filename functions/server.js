@@ -19,7 +19,8 @@ const getTopics = () => {
         topic: file.replace(".md", ""),
         content: fs.readFileSync(path.join(categoryPath, file), "utf-8")
       }));
-      console.log(`./topics/${category}/${'bubblesort'}`)
+
+      console.log(category)
       acc[category] = topics;
     }
     return acc;

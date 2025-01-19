@@ -1,6 +1,8 @@
 [build]
   functions = "functions"
-  included_files = ["topics/**"]
+
+[functions]
+  included_files = ["functions/topics/**"]
 
 [[redirects]]
   from = "/api/*"

@@ -5,11 +5,11 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-app.use(cors()); // Allow frontend requests
+app.use(cors());
 
 const baseDir = path.join(__dirname, "topics");
 
-// Function to scan topic directories dynamically
+
 const getTopics = () => {
   return fs.readdirSync(baseDir).reduce((acc, category) => {
     const categoryPath = path.join(baseDir, category);
@@ -27,13 +27,11 @@ const getTopics = () => {
   }, {});
 };
 
-// API Endpoint to get all topics
 app.get("/api/topics", (req, res) => {
   const topics = getTopics();
   res.json(topics);
 });
 
-// API to get a specific topic
 app.get("/api/topic/:category/:topic", (req, res) => {
   const { category, topic } = req.params;
   const topicPath = path.join(baseDir, category, `${topic}.md`);
@@ -46,5 +44,4 @@ app.get("/api/topic/:category/:topic", (req, res) => {
   }
 });
 
-// Export as serverless function
 module.exports.handler = serverless(app);
